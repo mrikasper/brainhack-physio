@@ -16,14 +16,14 @@
 %% Setup paths - #MOD# Modify to your own environment
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-iResults = 1; % if multiple processing pipelines are tested, incremenent this index to write results out in a different folder
+iResults = 2; % if multiple processing pipelines are tested, incremenent this index to write results out in a different folder
 iRun = 1; %1,2,3,4
 subjectId = 'sub-46';
  % if true, only the SPM batch jobs are loaded, but you have to run them manually in the batch editor (play button)
 isInteractive = true;
 
 
-doOverwriteResults = false;
+doOverwriteResults = true;
 hasStruct = false; % if false, uses (bias-corrected) mean of fmri.nii for visualizations
 doSmooth = true;
 
@@ -46,7 +46,6 @@ files.anat = sprintf('%s_run-01_T1w.nii', subjectId);
 for r = 1:4
     dirs.physio_out{r} = sprintf('physio_out_run%d', r);
     files.func{r} = sprintf('%s_task-NAconf_run-%02d_bold', subjectId, iRun);
-    files.physio{r}
 end
 
 paths.subject.func = fullfile(paths.subject.results, 'func');
@@ -57,11 +56,11 @@ paths.subject.physio_out = strcat(paths.subject.results, filesep, ...
 %% TODO: read from .sub-46_task-NAconf_run-01_bold.json
 switch subjectId
     case 'sub-46'
-        nSlices = 28/2; % nSlicesTotal/MB factor; nSlices from SliceTiming info?
+        nSlices = 28; % hack for now, because of bug in tapas_physio_get_onsets_from_locs should be nSlicesTotal/MB factor; nSlices from SliceTiming info?
         TR = 1.25; % seconds
         nVolumes = 488;
     case 'sub-45' %TODO!
-        nSlices = 28/2; % nSlicesTotal/MB factor; nSlices from SliceTiming info?
+        nSlices = 28; % nSlicesTotal/MB factor; nSlices from SliceTiming info?
         TR = 1.25; % seconds
         nVolumes = 488;
 end
