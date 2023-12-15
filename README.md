@@ -1,9 +1,11 @@
-# cubric-physio
+# BrainHack-Physio
 
-Physiological Noise Correction using the PhysIO Toolbox - Examples for CUBRIC, Cardiff 
+- Physiological Noise Correction using the PhysIO Toolbox - Examples for the [BrainHack 23, Toronto](https://brainhackto.github.io/global-toronto-12-2023/)
+- Project Proposal, with links, references: https://brainhack.org/global2023/project/project_71/
+- Chat to us on MatterMost: https://mattermost.brainhack.org/brainhack/channels/physio
 
 ## Purpose
-This small repository sets up a simple preprocessing (realignment)
+This small repository sets up a simple preprocessing (realignment, smoothing) and single subject fMRI analysis using the modeled physiological noise.
 
 ## Installation
 1. You will need to install SPM12
