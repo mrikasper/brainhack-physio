@@ -11,7 +11,11 @@ This small repository sets up a simple preprocessing (realignment, smoothing) an
 1. You will need to install SPM12
 2. You will need to install the PhysIO Toolbox
     - The `PhysIO/code` folder should end up in `spm12/toolbox/PhysIO`
-
+3. You will need from the following dataset (Brainstem fMRI, native Siemens physio logfiles):
+    - https://doi.org/10.1016/j.celrep.2023.113405
+    - physiological and behavioral logfiles on OSF: https://osf.io/td5kp/
+    - fMRI data on OpenNeuro/DataLad: https://github.com/OpenNeuroDatasets/ds004808/
+   
 
 ## Getting Started
 
