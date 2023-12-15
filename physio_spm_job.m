@@ -1,22 +1,22 @@
 %-----------------------------------------------------------------------
-% Job saved on 20-Nov-2022 13:59:18 by cfg_util (rev $Rev: 7345 $)
+% Job saved on 15-Dec-2023 09:46:55 by cfg_util (rev $Rev: 7345 $)
 % spm SPM - SPM12 (7771)
 % cfg_basicio BasicIO - Unknown
 %-----------------------------------------------------------------------
 matlabbatch{1}.spm.tools.physio.save_dir = {'physio_out'};
-matlabbatch{1}.spm.tools.physio.log_files.vendor = 'ADInstruments_Txt';
-matlabbatch{1}.spm.tools.physio.log_files.cardiac = {'SCANPHYSLOG.txt'};
-matlabbatch{1}.spm.tools.physio.log_files.respiration = {'SCANPHYSLOG.txt'};
-matlabbatch{1}.spm.tools.physio.log_files.scan_timing = {''};
+matlabbatch{1}.spm.tools.physio.log_files.vendor = 'Siemens_Tics';
+matlabbatch{1}.spm.tools.physio.log_files.cardiac = {'C:\Users\kasperla\polybox\Shared\PhysioUserData\BrainHack23PhysIOMACS\results\sub-46\nifti\Physio_20221213_sess1_PULS.log'};
+matlabbatch{1}.spm.tools.physio.log_files.respiration = {'C:\Users\kasperla\polybox\Shared\PhysioUserData\BrainHack23PhysIOMACS\results\sub-46\nifti\Physio_20221213_sess1_RESP.log'};
+matlabbatch{1}.spm.tools.physio.log_files.scan_timing = {'C:\Users\kasperla\polybox\Shared\PhysioUserData\BrainHack23PhysIOMACS\results\sub-46\nifti\Physio_20221213_sess1_Info.log'};
 matlabbatch{1}.spm.tools.physio.log_files.sampling_interval = [];
 matlabbatch{1}.spm.tools.physio.log_files.relative_start_acquisition = 0;
 matlabbatch{1}.spm.tools.physio.log_files.align_scan = 'last';
-matlabbatch{1}.spm.tools.physio.scan_timing.sqpar.Nslices = 24;
+matlabbatch{1}.spm.tools.physio.scan_timing.sqpar.Nslices = 14;
 matlabbatch{1}.spm.tools.physio.scan_timing.sqpar.NslicesPerBeat = [];
-matlabbatch{1}.spm.tools.physio.scan_timing.sqpar.TR = 1.5;
+matlabbatch{1}.spm.tools.physio.scan_timing.sqpar.TR = 1.25;
 matlabbatch{1}.spm.tools.physio.scan_timing.sqpar.Ndummies = 0;
-matlabbatch{1}.spm.tools.physio.scan_timing.sqpar.Nscans = 400;
-matlabbatch{1}.spm.tools.physio.scan_timing.sqpar.onset_slice = 12;
+matlabbatch{1}.spm.tools.physio.scan_timing.sqpar.Nscans = 488;
+matlabbatch{1}.spm.tools.physio.scan_timing.sqpar.onset_slice = 7;
 matlabbatch{1}.spm.tools.physio.scan_timing.sqpar.time_slice_to_slice = [];
 matlabbatch{1}.spm.tools.physio.scan_timing.sqpar.Nprep = [];
 matlabbatch{1}.spm.tools.physio.scan_timing.sync.scan_timing_log = struct([]);
@@ -39,10 +39,7 @@ matlabbatch{1}.spm.tools.physio.model.rvt.yes.method = 'hilbert';
 matlabbatch{1}.spm.tools.physio.model.rvt.yes.delays = 0;
 matlabbatch{1}.spm.tools.physio.model.hrv.yes.delays = 0;
 matlabbatch{1}.spm.tools.physio.model.noise_rois.no = struct([]);
-matlabbatch{1}.spm.tools.physio.model.movement.yes.file_realignment_parameters = {'nifti/rp_fmri.txt'};
-matlabbatch{1}.spm.tools.physio.model.movement.yes.order = 6;
-matlabbatch{1}.spm.tools.physio.model.movement.yes.censoring_method = 'FD';
-matlabbatch{1}.spm.tools.physio.model.movement.yes.censoring_threshold = 1;
+matlabbatch{1}.spm.tools.physio.model.movement.no = struct([]);
 matlabbatch{1}.spm.tools.physio.model.other.no = struct([]);
 matlabbatch{1}.spm.tools.physio.verbose.level = 2;
 matlabbatch{1}.spm.tools.physio.verbose.fig_output_file = 'physio.jpg';

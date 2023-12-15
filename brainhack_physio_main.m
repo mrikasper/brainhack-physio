@@ -1,49 +1,50 @@
-% Script cubric_physio_main
+% Script brainhack_physio_main
 % Main preproc/analysis script lernit to create PhysIO regressors and
 % assess them via a nuisance-only GLM
 %
-%  cubric_physio_main
+%  brainhack_physio_main
 %
 %
 %   See also
  
 % Author:   Lars Kasper
-% Created:  2022-11-20
-% Copyright (C) 2022
+% Created:  2023-12-25
+% Copyright (C) 2023
  
  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Setup paths - #MOD# Modify to your own environment
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-subjectId = 'sub-01';
+subjectId = 'sub-46';
  % if true, only the SPM batch jobs are loaded, but you have to run them manually in the batch editor (play button)
 isInteractive = true;
 hasStruct = false; % if false, uses (bias-corrected) mean of fmri.nii for visualizations
 doSmooth = true;
 
 
-pathProject     = 'C:\Users\kasperla\OneDrive - UHN\Collaborations\PhysIO\CUBRICTalk';
+pathProject     = 'C:\Users\kasperla\polybox\Shared\PhysioUserData\BrainHack23PhysIOMACS';
 pathCode        = fullfile(pathProject, 'code');
 pathResults     = fullfile(pathProject, 'results');
 pathSubject     = fullfile(pathResults, subjectId);
 
-
+%% TODO: read from .sub-46_task-NAconf_run-01_bold.json
 switch subjectId
-    case 'sub-01'
-        nSlices = 96/4; % nSlicesTotal/MB factor
-        TR = 1.5; % seconds
-        nVolumes = 400;
-    case 'sub-02'
-        nSlices = 46; % nSlicesTotal/MB factor
-        TR = 9; % seconds
-        nVolumes = 150;
+    case 'sub-46'
+        nSlices = 28/2; % nSlicesTotal/MB factor; nSlices from SliceTiming info?
+        TR = 1.25; % seconds
+        nVolumes = 488;
+    case 'sub-45' %TODO!
+        nSlices = 28/2; % nSlicesTotal/MB factor; nSlices from SliceTiming info?
+        TR = 1.25; % seconds
+        nVolumes = 488;
 end
 
 addpath(genpath(pathCode));
 pathNow = pwd;
 
 
+if ~isfolder(pathSubject), mkdir(pathSubject); end
 cd(pathSubject);
 
 % folder structure created with in results folder of subject to hold
