@@ -16,14 +16,13 @@
 %% Setup paths - #MOD# Modify to your own environment
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-iResults = 2; % if multiple processing pipelines are tested, incremenent this index to write results out in a different folder
+iResults = 3; % if multiple processing pipelines are tested, incremenent this index to write results out in a different folder
 iRun = 1; %1,2,3,4
 subjectId = 'sub-46';
  % if true, only the SPM batch jobs are loaded, but you have to run them manually in the batch editor (play button)
-isInteractive = true;
+isInteractive = false;
 
-
-doOverwriteResults = true;
+doOverwriteResults = false;
 hasStruct = false; % if false, uses (bias-corrected) mean of fmri.nii for visualizations
 doSmooth = true;
 
@@ -128,7 +127,7 @@ if isInteractive, input('Press Enter to continue'); end
 % loads matlabbatch and adapts subject-specific data
 clear matlabbatch
 
-fileJobPhysio = 'physio_spm_job.m';
+fileJobPhysio = 'physio_with_motion_spm_job'; % 'physio_spm_job.m';
 clear matlabbatch
 run(fileJobPhysio)
 matlabbatch{1}.spm.tools.physio.save_dir = cellstr(paths.subject.physio_out{iRun});
@@ -145,6 +144,8 @@ matlabbatch{1}.spm.tools.physio.scan_timing.sqpar.Nscans = nVolumes;
 matlabbatch{1}.spm.tools.physio.scan_timing.sqpar.Nslices = nSlices;
 matlabbatch{1}.spm.tools.physio.scan_timing.sqpar.TR = TR;
 matlabbatch{1}.spm.tools.physio.scan_timing.sqpar.onset_slice = nSlices/2;
+matlabbatch{1}.spm.tools.physio.model.movement.yes.file_realignment_parameters = ...
+    cellstr(fullfile(paths.subject.func, sprintf('rp_%s.txt', files.func{iRun})));
 
 switch subjectId
     case 'sub-46'
@@ -183,10 +184,12 @@ run(fileJobGlm)
 
 if doSmooth
     matlabbatch{1}.spm.stats.fmri_spec.sess.scans = ...
-        cellstr(spm_select('ExtFPList', 'nifti', '^srfmri.*', 1:nVolumes));
+        cellstr(spm_select('ExtFPList', paths.subject.func, ...
+        sprintf('^sr%s\,nii', files.func{iRun}), 1:nVolumes));
 else
     matlabbatch{1}.spm.stats.fmri_spec.sess.scans = ...
-        cellstr(spm_select('ExtFPList', 'nifti', '^rfmri.*', 1:nVolumes));
+        cellstr(spm_select('ExtFPList', paths.subject.func, ...
+        sprintf('^r%s\,nii', files.func{iRun}), 1:nVolumes));
 end
 
 matlabbatch{1}.spm.stats.fmri_spec.timing.fmri_t = nSlices;
