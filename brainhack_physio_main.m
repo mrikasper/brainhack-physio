@@ -20,7 +20,7 @@ iResults = 2; % if multiple processing pipelines are tested, incremenent this in
 iRun = 1; %1,2,3,4
 subjectId = 'sub-46';
  % if true, only the SPM batch jobs are loaded, but you have to run them manually in the batch editor (play button)
-isInteractive = false;
+isInteractive = true;
 
 doOverwriteResults = false;
 hasStruct = false; % if false, uses (bias-corrected) mean of fmri.nii for visualizations
@@ -195,7 +195,8 @@ end
 matlabbatch{1}.spm.stats.fmri_spec.timing.fmri_t = nSlices;
 matlabbatch{1}.spm.stats.fmri_spec.timing.RT = TR;
 matlabbatch{1}.spm.stats.fmri_spec.timing.fmri_t0 = nSlices/2;
-
+matlabbatch{1}.spm.stats.fmri_spec.sess.multi_reg = cellstr(fullfile(...
+    paths.subject.physio_out{iRun}, 'multiple_regressors.txt'))
 spm_jobman(jobMode, matlabbatch)
 
 if isInteractive, input('Press Enter to continue'); end

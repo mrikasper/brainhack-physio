@@ -18,7 +18,8 @@
 doVisualizeFmri4D = false;
 
 if doVisualizeFmri4D
-    spm_check_registration('nifti/fmri.nii')
+    spm_check_registration(fullfile(paths.subject.func,...
+        sprintf('%s.nii', files.func{iRun})));
 
     % compute time series minus mean (bit of a hack...)
     % {1} means specify 4D data as matrix X (instead of i1, i2 etc.)
@@ -32,21 +33,17 @@ end
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 if hasStruct
-    fileStructural = 'nifti/mstruct.nii';
+    fileStructural = 'func/mstruct.nii';
 else
-    fileStructural = 'nifti/mmeanfmri.nii';
+    fileStructural = fullfile(paths.subject.func,...
+        sprintf('mmean%s.nii', files.func{iRun}));
 end
 
-if doSmooth
-    fileSpm = 'glm_s3/SPM.mat';
-else
-    fileSpm = 'glm/SPM.mat';
-end
 
 args = tapas_physio_report_contrasts(...
-    'fileReport', 'physio_out/physio.ps', ...
-    'fileSpm', fileSpm, ...
-    'filePhysIO', 'physio_out/physio.mat', ...
+    'fileReport', fullfile(paths.subject.physio_out{iRun}, 'physio.ps'), ...
+    'fileSpm', fullfile(paths.subject.glm, 'SPM.mat'), ...
+    'filePhysIO', fullfile(paths.subject.physio_out{iRun}, 'physio.mat'), ...
     'fileStructural', fileStructural)
 
 
