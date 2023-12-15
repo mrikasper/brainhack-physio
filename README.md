@@ -12,16 +12,22 @@ This small repository sets up a simple preprocessing (realignment)
 
 
 ## Getting Started
-1. Open the main script `cubric_main` in Matlab
-2. Follow the instructions there to adapt paths to your environment
-3. For each subject to try, copy the fMRI and physiological recording data according to the following naming 
-   conventions into a new folder `results/sub-XX` (XX is subject ID, e.g., 15)
-    - `*3DT1*.nii                   -> results/sub-XX/nifti/struct.nii`
-    - `*rFMRI*.nii                  -> results/sub-XX/nifti/fmri.nii`
-        - Note that this only assesses the resting state run for now. You can number the runs `fmri1.nii`, `fmri2.nii` etc., 
-          but you will have to adapt all job files `*_spm_job.m` in the code to reflect the right file names.
-    - `LabChart*.txt   -> SCANPHYSLOG.log`
-        - Note that you have to choose the log file where the `<TimeStamp>`  
-          roughly matches (being a bit earlier, but < 1 min) the
-          `AcquisitionTime` in the `.json` sidecar file of the corresponding `*rFMRI*.nii` file
-4. Run `cubric_physio_main` (play button) in Matlab. For starters, the interactive mode (`isInteraxtive = true`) is recommended
+
+1. Create the following folder structure:
+   ```
+   project/
+           data/
+                sub-46/             (copy from OpenNeuro.org fmri) and osf.io (physio))
+                       func/        (functional data from OpenNeuro)
+                       anat/        (structural data from OpenNeuro)
+                       physio/      (physiological logfiles from osf.io)
+           code/brainhack-physio/   (this repository)
+   ```
+2. Open the main script `brainhack_physio_main` in Matlab
+3. Follow the instructions there to adapt paths to your environment
+4. For each subject to try, download copy the fMRI and physiological recording data 
+5. Run `brainhack_physio_main` (play button) in Matlab. 
+    - For starters, the interactive mode (`isInteraxtive = true`) is recommended
+    - In this mode, each step is displayed in the SPM Batch Editor, and you have to press the play button (and wait) to execute
+    - After the step finishes, press Enter in the command window
+

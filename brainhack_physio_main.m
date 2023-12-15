@@ -16,7 +16,7 @@
 %% Setup paths - #MOD# Modify to your own environment
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-iResults = 3; % if multiple processing pipelines are tested, incremenent this index to write results out in a different folder
+iResults = 2; % if multiple processing pipelines are tested, incremenent this index to write results out in a different folder
 iRun = 1; %1,2,3,4
 subjectId = 'sub-46';
  % if true, only the SPM batch jobs are loaded, but you have to run them manually in the batch editor (play button)
