@@ -37,3 +37,7 @@ This small repository sets up a simple preprocessing (realignment, smoothing) an
     - In this mode, each step is displayed in the SPM Batch Editor, and you have to press the play button (and wait) to execute
     - After the step finishes, press Enter in the command window
 
+The final step executed by this script will be the visualization of the physiological regressors. For the F-map of all RETROICOR (physiological phase) 
+and movement regressors, this should look like the following screenshot for a single subject (`sub-46`):
+
+![F-Map Physiological Noise Single Subject](FMapAllPhysMove.png?raw=true "F-Map Physiological Noise")
